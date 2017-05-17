@@ -17,7 +17,7 @@ menuAdmin::menuAdmin() {
 void menuAdmin:: mostrarMenu(){
 
 	int opc = 0;
-
+	while(opc > 3 && opc < 1){
 	cout << "Menú de Administrador" << endl;
 	cout << "=====================" << endl;
 	cout << "1.- Eliminar empresa" << endl;
@@ -37,7 +37,11 @@ void menuAdmin:: mostrarMenu(){
 	case 3:
 		eliminarPedido();
 		break;
+	default:
+		cout << ("Introduzca un valor correcto.") << endl;
+		break;
 	}
+}
 
 }
 menuAdmin::~menuAdmin() {
