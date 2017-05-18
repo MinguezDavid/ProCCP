@@ -9,6 +9,9 @@ int main(){
 
 	bd->open();
 	bd->recuperarUsuarios();
+	bd->guardarUsuario("Pedro", 1978,854124578,"Madrid", "Pamplona");
+	//bd->borrarUsuario("Pedro");
+	bd->recuperarUsuarios();
 	bd->close();
 
 	return 0;

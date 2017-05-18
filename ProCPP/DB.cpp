@@ -63,7 +63,7 @@ int DB::recuperarUsuarios(){
 
 		cout << endl;
 		cout << endl;
-		cout << "Showing usuarios:" << endl;
+		cout << "Mostrando usuarios:" << endl;
 		do {
 			result = sqlite3_step(stmt) ;
 			if (result == SQLITE_ROW) {
@@ -87,6 +87,412 @@ int DB::recuperarUsuarios(){
 
 
 		return SQLITE_OK;
+}
+
+int DB::recuperarAdministradores(){
+	char sql[] = "select Nombre from Administradores";
+
+		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+		if (result != SQLITE_OK) {
+				cout << "Error preparing statement (SELECT)" << endl;
+				return result;
+			}
+
+		cout << "SQL query prepared (SELECT)" << endl;
+
+		int id;
+		char name[100];
+
+			cout << endl;
+			cout << endl;
+			cout << "Mostrando Administradores:" << endl;
+			do {
+				result = sqlite3_step(stmt) ;
+				if (result == SQLITE_ROW) {
+					id = sqlite3_column_int(stmt, 0);
+					strcpy(name, (char *) sqlite3_column_text(stmt, 0));
+					cout << name << endl;
+				}
+			} while (result == SQLITE_ROW);
+
+			cout << endl;
+			cout << endl;
+
+			result = sqlite3_finalize(stmt);
+			if (result != SQLITE_OK) {
+				cout <<"Error finalizing statement (SELECT)" << endl;
+				cout << sqlite3_errmsg(db) <<endl;
+			}else{
+				cout << "Prepared statement finalized (SELECT)" << endl;
+			}
+			return result;
+
+
+			return SQLITE_OK;
+}
+
+int DB::guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * ciudad_residencia, char * ciudad_Construccion){
+	char sql[] = "insert into Usuario values (?, ?, ?, ?, ?)";
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement (INSERT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("SQL query prepared (INSERT)\n");
+
+	result = sqlite3_bind_text(stmt, 1, nombre, strlen(nombre), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_int(stmt, 2, fechaNacimiento);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_int(stmt, 3, telefono);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_text(stmt, 4, ciudad_residencia, strlen(ciudad_residencia), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_text(stmt, 5, ciudad_Construccion, strlen(ciudad_Construccion), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_step(stmt);
+	if (result != SQLITE_DONE) {
+		printf("Error inserting new data into country table\n");
+		return result;
+	}
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		printf("Error finalizing statement (INSERT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("Prepared statement finalized (INSERT)\n");
+
+	return SQLITE_OK;
+}
+
+int DB::borrarUsuario(char * nombre){
+	char sql[] = "delete from Usuario where Nombre=?";
+
+		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+		if (result != SQLITE_OK) {
+			printf("Error preparing statement (DELETE)\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+		}
+
+		result = sqlite3_bind_text(stmt, 1, nombre, strlen(nombre), SQLITE_STATIC);
+		if (result != SQLITE_OK) {
+			printf("Error binding parameters\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+			}
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error inserting new data into country table\n");
+			return result;
+			}
+
+		printf("SQL query prepared (DELETE)\n");
+
+		result = sqlite3_finalize(stmt);
+		if (result != SQLITE_OK) {
+			printf("Error finalizing statement (DELETE)\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+		}
+
+		printf("Prepared statement finalized (DELETE)\n");
+
+		return SQLITE_OK;
+}
+
+int DB::guardarPedido(char * colorBaño, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBaños, int idPedido){
+	char sql[] = "insert into Pedido values (?, ?, ?, ?, ?, ?, ?)";
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement (INSERT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("SQL query prepared (INSERT)\n");
+
+	result = sqlite3_bind_text(stmt, 1, colorBaño, strlen(colorBaño), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_text(stmt, 2, colorHabitacion, strlen(colorHabitacion), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_text(stmt, 3, colorSalon, strlen(colorSalon), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_text(stmt, 4, lugarConstruccion, strlen(lugarConstruccion), SQLITE_STATIC);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_int(stmt, 5, numHabitaciones);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_bind_int(stmt, 6, numBaños);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+		}
+
+	result = sqlite3_bind_int(stmt, 7, idPedido);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+		}
+
+	result = sqlite3_step(stmt);
+	if (result != SQLITE_DONE) {
+		printf("Error inserting new data into country table\n");
+		return result;
+	}
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		printf("Error finalizing statement (INSERT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("Prepared statement finalized (INSERT)\n");
+
+	return SQLITE_OK;
+}
+
+int DB::recuperarPrecio(char * nombre){
+	char sql[] = "select Precio from Materiales where Nombre=?";
+
+		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+		if (result != SQLITE_OK) {
+				cout << "Error preparing statement (SELECT)" << endl;
+				return result;
+			}
+
+		result = sqlite3_bind_text(stmt, 1, nombre, strlen(nombre), SQLITE_STATIC);
+			if (result != SQLITE_OK) {
+				printf("Error binding parameters\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			result = sqlite3_step(stmt);
+			if (result != SQLITE_DONE) {
+				printf("Error inserting new data into country table\n");
+				return result;
+			}
+
+		cout << "SQL query prepared (SELECT)" << endl;
+
+		int id;
+		char name[100];
+
+			cout << endl;
+			cout << endl;
+			cout << "Mostrando Precio:" << endl;
+			do {
+				result = sqlite3_step(stmt) ;
+				if (result == SQLITE_ROW) {
+					id = sqlite3_column_int(stmt, 0);
+					strcpy(name, (char *) sqlite3_column_text(stmt, 0));
+					cout << name << endl;
+				}
+			} while (result == SQLITE_ROW);
+
+			cout << endl;
+			cout << endl;
+
+			result = sqlite3_finalize(stmt);
+			if (result != SQLITE_OK) {
+				cout <<"Error finalizing statement (SELECT)" << endl;
+				cout << sqlite3_errmsg(db) <<endl;
+			}else{
+				cout << "Prepared statement finalized (SELECT)" << endl;
+			}
+			return result;
+
+
+			return SQLITE_OK;
+}
+
+int DB::recuperarPedido(int idPedido){
+	char sql[] = "select * from Pedido where IdPedido=?";
+
+			int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+			if (result != SQLITE_OK) {
+					cout << "Error preparing statement (SELECT)" << endl;
+					return result;
+				}
+
+			result = sqlite3_bind_int(stmt, 1, idPedido);
+				if (result != SQLITE_OK) {
+					printf("Error binding parameters\n");
+					printf("%s\n", sqlite3_errmsg(db));
+					return result;
+				}
+
+				result = sqlite3_step(stmt);
+				if (result != SQLITE_DONE) {
+					printf("Error inserting new data into country table\n");
+					return result;
+				}
+
+			cout << "SQL query prepared (SELECT)" << endl;
+
+			int id;
+			int numHabitaciones;
+			int numBaños;
+			char colorBaño[100];
+			char colorHabitacion[100];
+			char colorSalon[100];
+			char lugarConstruccion[100];
+			char nombreUsuario[100];
+
+
+				cout << endl;
+				cout << endl;
+				cout << "Mostrando Pedido:" << endl;
+				do {
+					result = sqlite3_step(stmt) ;
+					if (result == SQLITE_ROW) {
+						strcpy(colorBaño, (char *) sqlite3_column_text(stmt, 0));
+						strcpy(colorHabitacion, (char *) sqlite3_column_text(stmt, 1));
+						strcpy(colorSalon, (char *) sqlite3_column_text(stmt, 2));
+						numHabitaciones = sqlite3_column_int(stmt, 3);
+						numBaños = sqlite3_column_int(stmt, 4);
+						id = sqlite3_column_int(stmt, 5);
+						strcpy(nombreUsuario, (char *) sqlite3_column_text(stmt, 6));
+						cout << "Color del baño = " + colorBaño << endl;
+						cout << "Color de la habitación = " + colorHabitacion << endl;
+						cout << "Color del salón = " + colorSalon << endl;
+						cout << "Lugar de construcción = " + lugarConstruccion << endl;
+						cout << "Número de habitaciones = " + numHabitaciones << endl;
+						cout << "Número de baños = " + numBaños << endl;
+						cout << "Número de id = " + id << endl;
+						cout << "Usuario pedido = " + nombreUsuario << endl;
+
+					}
+				} while (result == SQLITE_ROW);
+
+				cout << endl;
+				cout << endl;
+
+				result = sqlite3_finalize(stmt);
+				if (result != SQLITE_OK) {
+					cout <<"Error finalizing statement (SELECT)" << endl;
+					cout << sqlite3_errmsg(db) <<endl;
+				}else{
+					cout << "Prepared statement finalized (SELECT)" << endl;
+				}
+				return result;
+
+
+				return SQLITE_OK;
+}
+
+int DB::recuperarPedidos(char * nombre){
+	char sql[] = "select IdPedido, Usuario from Pedido where Usuario=?";
+
+		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+		if (result != SQLITE_OK) {
+				cout << "Error preparing statement (SELECT)" << endl;
+				return result;
+		}
+
+		result = sqlite3_bind_text(stmt, 1, nombre,strlen(nombre), SQLITE_STATIC);
+			if (result != SQLITE_OK) {
+				printf("Error binding parameters\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			result = sqlite3_step(stmt);
+			if (result != SQLITE_DONE) {
+				printf("Error inserting new data into country table\n");
+				return result;
+			}
+
+			cout << "SQL query prepared (SELECT)" << endl;
+
+			int id;
+			char nombreUsuario[100];
+			cout << endl;
+			cout << endl;
+			cout << "Mostrando Pedidos:" << endl;
+			do {
+				result = sqlite3_step(stmt) ;
+				if (result == SQLITE_ROW) {
+					id = sqlite3_column_int(stmt, 6);
+					strcpy(nombreUsuario, (char *) sqlite3_column_text(stmt, 7));
+					cout << "Número de id = " + id << endl;
+					cout << "Nombre usuario = " + nombreUsuario << endl;
+				}
+			} while (result == SQLITE_ROW);
+
+			cout << endl;
+			cout << endl;
+
+			result = sqlite3_finalize(stmt);
+			if (result != SQLITE_OK) {
+				cout <<"Error finalizing statement (SELECT)" << endl;
+				cout << sqlite3_errmsg(db) <<endl;
+			}else{
+				cout << "Prepared statement finalized (SELECT)" << endl;
+			}
+			return result;
+
+
+			return SQLITE_OK;
 }
 
 } /* namespace std */
