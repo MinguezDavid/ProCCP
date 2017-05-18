@@ -29,13 +29,13 @@ void menuAdmin:: mostrarMenu(){
 	switch(opc){
 
 	case 1:
-		eliminarEmpresa();
+		//eliminarEmpresa();
 		break;
 	case 2:
-		consultarPedidos();
+		//consultarPedidos();
 		break;
 	case 3:
-		eliminarPedido();
+		//eliminarPedido();
 		break;
 	default:
 		cout << ("Introduzca un valor correcto.") << endl;
