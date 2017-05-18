@@ -63,12 +63,12 @@ int DB::recuperarUsuarios(){
 
 		cout << endl;
 		cout << endl;
-		cout << "Showing countries:";
+		cout << "Showing usuarios:" << endl;
 		do {
 			result = sqlite3_step(stmt) ;
 			if (result == SQLITE_ROW) {
 				id = sqlite3_column_int(stmt, 0);
-				strcpy(name, (char *) sqlite3_column_text(stmt, 1));
+				strcpy(name, (char *) sqlite3_column_text(stmt, 0));
 				cout << name << endl;
 			}
 		} while (result == SQLITE_ROW);
