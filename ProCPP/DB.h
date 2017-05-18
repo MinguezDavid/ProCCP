@@ -33,7 +33,7 @@ public:
 	int recuperarPrecio(char * nombre);
 	int recuperarPedido(int idPedido);
 	int recuperarPedidos(char * nombreUsuario);
-	int guardarPedido(char * colorBaño, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBaños, int idPedido);
+	int guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBanos, int idPedido);
 	int borrarUsuario(char * nombreUsuario);
 	int guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * ciudad_residencia, char * ciudad_Construccion);
 };

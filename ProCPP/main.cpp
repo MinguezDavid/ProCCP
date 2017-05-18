@@ -12,6 +12,7 @@ int main(){
 	bd->guardarUsuario("Pedro", 1978,854124578,"Madrid", "Pamplona");
 	//bd->borrarUsuario("Pedro");
 	bd->recuperarUsuarios();
+	bd->recuperarPedidos("Borja");
 	bd->close();
 
 	return 0;

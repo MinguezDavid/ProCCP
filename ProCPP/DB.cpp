@@ -58,16 +58,14 @@ int DB::recuperarUsuarios(){
 
 	cout << "SQL query prepared (SELECT)" << endl;
 
-	int id;
 	char name[100];
 
 		cout << endl;
 		cout << endl;
 		cout << "Mostrando usuarios:" << endl;
 		do {
-			result = sqlite3_step(stmt) ;
+			result = sqlite3_step(stmt);
 			if (result == SQLITE_ROW) {
-				id = sqlite3_column_int(stmt, 0);
 				strcpy(name, (char *) sqlite3_column_text(stmt, 0));
 				cout << name << endl;
 			}
@@ -100,7 +98,6 @@ int DB::recuperarAdministradores(){
 
 		cout << "SQL query prepared (SELECT)" << endl;
 
-		int id;
 		char name[100];
 
 			cout << endl;
@@ -109,7 +106,6 @@ int DB::recuperarAdministradores(){
 			do {
 				result = sqlite3_step(stmt) ;
 				if (result == SQLITE_ROW) {
-					id = sqlite3_column_int(stmt, 0);
 					strcpy(name, (char *) sqlite3_column_text(stmt, 0));
 					cout << name << endl;
 				}
@@ -232,7 +228,7 @@ int DB::borrarUsuario(char * nombre){
 		return SQLITE_OK;
 }
 
-int DB::guardarPedido(char * colorBaño, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBaños, int idPedido){
+int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBanos, int idPedido){
 	char sql[] = "insert into Pedido values (?, ?, ?, ?, ?, ?, ?)";
 	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -243,7 +239,7 @@ int DB::guardarPedido(char * colorBaño, char * colorHabitacion, char * colorSalo
 
 	printf("SQL query prepared (INSERT)\n");
 
-	result = sqlite3_bind_text(stmt, 1, colorBaño, strlen(colorBaño), SQLITE_STATIC);
+	result = sqlite3_bind_text(stmt, 1, colorBano, strlen(colorBano), SQLITE_STATIC);
 	if (result != SQLITE_OK) {
 		printf("Error binding parameters\n");
 		printf("%s\n", sqlite3_errmsg(db));
@@ -278,7 +274,7 @@ int DB::guardarPedido(char * colorBaño, char * colorHabitacion, char * colorSalo
 		return result;
 	}
 
-	result = sqlite3_bind_int(stmt, 6, numBaños);
+	result = sqlite3_bind_int(stmt, 6, numBanos);
 	if (result != SQLITE_OK) {
 		printf("Error binding parameters\n");
 		printf("%s\n", sqlite3_errmsg(db));
@@ -391,8 +387,8 @@ int DB::recuperarPedido(int idPedido){
 
 			int id;
 			int numHabitaciones;
-			int numBaños;
-			char colorBaño[100];
+			int numBanos;
+			char colorBano[100];
 			char colorHabitacion[100];
 			char colorSalon[100];
 			char lugarConstruccion[100];
@@ -405,21 +401,21 @@ int DB::recuperarPedido(int idPedido){
 				do {
 					result = sqlite3_step(stmt) ;
 					if (result == SQLITE_ROW) {
-						strcpy(colorBaño, (char *) sqlite3_column_text(stmt, 0));
+						strcpy(colorBano, (char *) sqlite3_column_text(stmt, 0));
 						strcpy(colorHabitacion, (char *) sqlite3_column_text(stmt, 1));
 						strcpy(colorSalon, (char *) sqlite3_column_text(stmt, 2));
 						numHabitaciones = sqlite3_column_int(stmt, 3);
-						numBaños = sqlite3_column_int(stmt, 4);
+						numBanos = sqlite3_column_int(stmt, 4);
 						id = sqlite3_column_int(stmt, 5);
 						strcpy(nombreUsuario, (char *) sqlite3_column_text(stmt, 6));
-						cout << "Color del baño = " + colorBaño << endl;
-						cout << "Color de la habitación = " + colorHabitacion << endl;
-						cout << "Color del salón = " + colorSalon << endl;
-						cout << "Lugar de construcción = " + lugarConstruccion << endl;
-						cout << "Número de habitaciones = " + numHabitaciones << endl;
-						cout << "Número de baños = " + numBaños << endl;
-						cout << "Número de id = " + id << endl;
-						cout << "Usuario pedido = " + nombreUsuario << endl;
+						cout << "Color del baño = " << colorBano << endl;
+						cout << "Color de la habitación = " << colorHabitacion << endl;
+						cout << "Color del salón = " << colorSalon << endl;
+						cout << "Lugar de construcción = " << lugarConstruccion << endl;
+						cout << "Número de habitaciones = " << numHabitaciones << endl;
+						cout << "Número de baños = " << numBanos << endl;
+						cout << "Número de id = " << id << endl;
+						cout << "Usuario pedido = " << nombreUsuario << endl;
 
 					}
 				} while (result == SQLITE_ROW);
@@ -456,11 +452,7 @@ int DB::recuperarPedidos(char * nombre){
 				return result;
 			}
 
-			result = sqlite3_step(stmt);
-			if (result != SQLITE_DONE) {
-				printf("Error inserting new data into country table\n");
-				return result;
-			}
+
 
 			cout << "SQL query prepared (SELECT)" << endl;
 
@@ -468,14 +460,15 @@ int DB::recuperarPedidos(char * nombre){
 			char nombreUsuario[100];
 			cout << endl;
 			cout << endl;
-			cout << "Mostrando Pedidos:" << endl;
+			cout << "Mostrando Pedidos: " << endl;
+			//se salta la primera fila
 			do {
-				result = sqlite3_step(stmt) ;
+				result = sqlite3_step(stmt);
 				if (result == SQLITE_ROW) {
-					id = sqlite3_column_int(stmt, 6);
-					strcpy(nombreUsuario, (char *) sqlite3_column_text(stmt, 7));
-					cout << "Número de id = " + id << endl;
-					cout << "Nombre usuario = " + nombreUsuario << endl;
+					id = sqlite3_column_int(stmt, 0);
+					strcpy(nombreUsuario, (char *) sqlite3_column_text(stmt, 1));
+					cout << "Numero de id = " << id << endl;
+					cout << "Nombre usuario = " << nombreUsuario << endl;
 				}
 			} while (result == SQLITE_ROW);
 
