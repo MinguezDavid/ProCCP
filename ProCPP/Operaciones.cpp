@@ -13,112 +13,109 @@
 namespace std {
 
 Operaciones::Operaciones() {
-	// TODO Auto-generated constructor stub
+
 
 }
 
 
 void opcionesEmp() {
-	/**char* lugar = malloc(sizeof(*lugar));
+	char* lugar;
 	int habitaciones;
 	int wc;
 	int emp;
-	this->colorB = colorB;
-	char* colorS = malloc(sizeof(*colorS));
-	char* colorH = malloc(sizeof(*colorH));
-	char* colorC = malloc(sizeof(*colorC));
+	char* colorB;
+	char* colorS;
+	char* colorH;
+	char* colorC;
 	//remove("ElecUsuario.txt")==0;
 
 	FILE* eleccion;
 	eleccion = fopen("ElecUsuario.txt", "r+");
 
-	printf("OPCIONES DE CONSTRUCCION\n\n");
+	cout << "OPCIONES DE CONSTRUCCION\n" << endl;
 	mostrarEmpresas();
-	printf("\n");
-*/
+	cout << endl;
+
 cout << "Introduzca el numero de la empresa que llevará a cabo la construcción: "<< endl;
 
 	//cin << emp;
 
-	/**if (emp == 2) {
-		printf("seleccione el color que se usará en los baños (blanco o azul): \n");
-		fflush(stdout);
-		scanf("%s", colorB);
+	if (emp == 2) {
+		cout << "seleccione el color que se usará en los baños (blanco o azul): \n" << endl;
+		//fflush(stdout);
+		cin >> colorB;
 		if(colorB != "blanco" || colorB != "azul" || colorB != "BLANCO" || colorB != "AZUL"){
-			printf("introduzca un color válido: \n");
-					fflush(stdout);
-					scanf("%s", colorB);
+			cout << "introduzca un color válido: " << endl;
+					//fflush(stdout);
+					cin >> colorB;
 		}
-		fprintf(eleccion, "\nColor baños %s ", colorB);
-		printf("seleccione el color que se usará en las habitaciones (blanco o azul): \n");
-		fflush(stdout);
-		scanf("%s", colorH);
+		//fprintf(eleccion, "\nColor baños %s ", colorB);
+		cout << "seleccione el color que se usará en las habitaciones (blanco o azul): " << endl;
+		//fflush(stdout);
+		cin >> colorH;
 		if(colorH != "blanco" || colorH != "azul" || colorH != "BLANCO" || colorH != "AZUL"){
-					printf("introduzca un color válido: \n");
-							fflush(stdout);
-							scanf("%s", colorH);
+					cout << "introduzca un color válido: " << endl;
+							//fflush(stdout);
+							cin >> colorH;
 				}
-		fprintf(eleccion, "\nColor habitaciones %s ", colorH);
-		printf("seleccione el color que se usará en el salón (Blanco o azul): \n");
-		fflush(stdout);
-		scanf("%s", colorS);
+		//fprintf(eleccion, "\nColor habitaciones %s ", colorH);
+		cout << "seleccione el color que se usará en el salón (Blanco o azul): " << endl;
+		//fflush(stdout);
+		cin >> colorS;
+
 		if(colorS != "blanco" || colorS != "azul" || colorS != "BLANCO" || colorS != "AZUL"){
-					printf("introduzca un color válido: \n");
-							fflush(stdout);
-							scanf("%s", colorS);
+					cout <<"introduzca un color válido: " << endl;
+							//fflush(stdout);
+							cin >> colorS;
 				}
-		fprintf(eleccion, "\nColor salón %s", colorS);
+		//fprintf(eleccion, "\nColor salón %s", colorS);
 
 	} else if (emp == 3) {
-		printf(
-				"seleccione el color/material que se usará en los baños (Blanco, azulejos o azul)\n");
-		fflush(stdout);
-		scanf("%s", colorB);
+		cout <<	"seleccione el color/material que se usará en los baños (Blanco, azulejos o azul)" << endl;
+		//fflush(stdout);
+		cin >> colorB;
 		if(colorB != "blanco" || colorB != "azul" || colorB != "BLANCO" || colorB != "AZUL" || colorB != "azulejos" || colorB != "AZULEJOS"){
-					printf("introduzca un color válido: \n");
-							fflush(stdout);
-							scanf("%s", colorB);
+					cout << "introduzca un color válido: " << endl;
+							//fflush(stdout);
+							cin >> colorB;
 				}
-		printf(
-				"seleccione el color/material que se usará en la cocina(Blanco o azulejos)\n");
-		fflush(stdout);
-		scanf("%s", colorC);
+		cout <<	"seleccione el color/material que se usará en la cocina(Blanco o azulejos)" << endl;
+		//fflush(stdout);
+		cin >> colorC;
 		if(colorC != "blanco" || colorC != "azulejos" || colorC != "BLANCO" || colorC != "AZULEJOS"){
-							printf("introduzca un color válido: \n");
-									fflush(stdout);
-									scanf("%s", colorC);
+							cout <<"introduzca un color válido: " << endl;
+									//fflush(stdout);
+									cin >> colorC;
 						}
 
-		fprintf(eleccion, "\nColor/material cocina %s ", colorC);
-		printf(
-				"seleccione el color que se usará en las habitaciones (cualquiera)\n");
-		fflush(stdout);
-		scanf("%s", colorH);
-		fprintf(eleccion, "\nColor habitaciones %s ", colorH);
-		printf("seleccione el color que se usará en el salón (cualquiera)\n");
-		fflush(stdout);
-		scanf("%s", colorS);
-		fprintf(eleccion, "\nColor salón %s", colorS);
+		//fprintf(eleccion, "\nColor/material cocina %s ", colorC);
+		cout <<	"seleccione el color que se usará en las habitaciones (cualquiera)" << endl;
+		//fflush(stdout);
+		cin >> colorH;
+		//fprintf(eleccion, "\nColor habitaciones %s ", colorH);
+		cout <<"seleccione el color que se usará en el salón (cualquiera)" << endl;
+		//fflush(stdout);
+		cin >> colorS;
+		//fprintf(eleccion, "\nColor salón %s", colorS);
 	}
 
-	printf(
-			"\nLugar donde se construirá la casa (playa, montaña o ciudad): \n");
-	fflush(stdout);
-	scanf("%s", lugar);
+	cout << "\nLugar donde se construirá la casa (playa, montaña o ciudad): " << endl;
+	//fflush(stdout);
+	cin >> lugar;
 	if(lugar != "playa" || lugar != "PLAYA" || lugar != "montaña" || lugar != "MONTAÑA" || lugar != "playa" || lugar != "PLAYA"){
-						printf("introduzca un lugar válido: \n");
-								fflush(stdout);
-								scanf("%s", lugar);
+						cout << "introduzca un lugar válido: " << endl;
+							//	fflush(stdout);
+								cin >> lugar;
 					}
-	fprintf(eleccion, "\nLugar de construccion: %s", lugar);
-	printf("Introduzca el número de habitaciones: \n");
-	fflush(stdout);
-	scanf("%i", &habitaciones);
-	fprintf(eleccion, "\nHabitaciones: %i", habitaciones);
-	printf("Introduzca el número de baños: \n");
-	fflush(stdout);
-	scanf("%i", &wc);
-	fprintf(eleccion, "\nBaños: %i \n", wc);
+	//fprintf(eleccion, "\nLugar de construccion: %s", lugar);
+	cout << "Introduzca el número de habitaciones: " << endl;
+	//fflush(stdout);
+	cin >> habitaciones;
+	//fprintf(eleccion, "\nHabitaciones: %i", habitaciones);
+	cout << "Introduzca el número de baños: " << endl;
+	//fflush(stdout);
+	cin >> wc;
+	//fprintf(eleccion, "\nBaños: %i \n", wc);
 //	printf("Esta es la elección final");
 
 
@@ -136,9 +133,9 @@ void mostrarEleccion() {
 	eleccion = fopen("ElecUsuario.txt", "r");
 
 	if (eleccion == ) {
-		printf("\nError de apertura del archivo. \n\n");
+		cout << "\nError de apertura del archivo. \n" << endl;
 	} else {
-		printf("\nINFORME \n\n");
+		cout << "\nINFORME \n" << endl;
 		while ((caracter = fgetc(eleccion)) != EOF) {
 			printf("%c", caracter);
 		}
@@ -148,12 +145,12 @@ void mostrarEleccion() {
 }
 
 Operaciones::~Operaciones() {
-	delete(lugar);
+		delete(lugar);
 		delete(colorB);
 		delete(colorS);
 		delete(colorH);
 		delete(colorC);
 }
-*/
+
 } /* namespace Punto */
-}
+
