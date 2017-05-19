@@ -122,7 +122,7 @@ cout << "Introduzca el numero de la empresa que llevará a cabo la construcción: 
 
 	fclose(eleccion);
 
-	menuUsuario();
+	//menuUsuario(); esto se queda así hasta nuevo aviso
 }
 
 //Va con algo de retraso
@@ -132,7 +132,7 @@ void mostrarEleccion() {
 
 	eleccion = fopen("ElecUsuario.txt", "r");
 
-	if (eleccion == ) {
+	if (eleccion == null) {
 		cout << "\nError de apertura del archivo. \n" << endl;
 	} else {
 		cout << "\nINFORME \n" << endl;
