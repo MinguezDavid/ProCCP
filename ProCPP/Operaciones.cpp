@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 
-namespace Punto {
+namespace std {
 
 Operaciones::Operaciones() {
 	// TODO Auto-generated constructor stub
