@@ -88,7 +88,7 @@ int DB::recuperarUsuarios(){
 }
 
 int DB::recuperarAdministradores(){
-	char sql[] = "select Nombre from Administradores";
+	char sql[] = "select Nombre from Administrador";
 
 		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 		if (result != SQLITE_OK) {
