@@ -330,8 +330,7 @@ int DB::recuperarPrecio(char * nombre){
 
 		cout << "SQL query prepared (SELECT)" << endl;
 
-		int id;
-		char name[100];
+		int precio;
 
 			cout << endl;
 			cout << endl;
@@ -340,8 +339,7 @@ int DB::recuperarPrecio(char * nombre){
 				result = sqlite3_step(stmt) ;
 				if (result == SQLITE_ROW) {
 					id = sqlite3_column_int(stmt, 0);
-					strcpy(name, (char *) sqlite3_column_text(stmt, 0));
-					cout << name << endl;
+					cout << precio << endl;
 				}
 			} while (result == SQLITE_ROW);
 
