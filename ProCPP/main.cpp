@@ -13,6 +13,7 @@ int main(){
 	//bd->borrarUsuario("Pedro");
 	bd->recuperarUsuarios();
 	bd->recuperarPedidos("Borja");
+	bd->recuperarPrecio("Madera");
 	bd->close();
 
 	return 0;

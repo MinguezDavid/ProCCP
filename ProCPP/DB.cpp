@@ -307,7 +307,7 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 }
 
 int DB::recuperarPrecio(char * nombre){
-	char sql[] = "select Precio from Materiales where Nombre=?";
+	char sql[] = "select Precio from Material where Nombre=?";
 
 		int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 		if (result != SQLITE_OK) {
@@ -322,11 +322,7 @@ int DB::recuperarPrecio(char * nombre){
 				return result;
 			}
 
-			result = sqlite3_step(stmt);
-			if (result != SQLITE_DONE) {
-				printf("Error inserting new data into country table\n");
-				return result;
-			}
+
 
 		cout << "SQL query prepared (SELECT)" << endl;
 
@@ -335,13 +331,12 @@ int DB::recuperarPrecio(char * nombre){
 			cout << endl;
 			cout << endl;
 			cout << "Mostrando Precio:" << endl;
-			do {
+
 				result = sqlite3_step(stmt) ;
-				if (result == SQLITE_ROW) {
-					id = sqlite3_column_int(stmt, 0);
+
+					precio = sqlite3_column_int(stmt, 0);
 					cout << precio << endl;
-				}
-			} while (result == SQLITE_ROW);
+
 
 			cout << endl;
 			cout << endl;
