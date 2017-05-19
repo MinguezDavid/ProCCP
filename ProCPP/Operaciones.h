@@ -8,8 +8,8 @@
 #ifndef OPERACIONES_H_
 #define OPERACIONES_H_
 #include <iostream>
+using namespace std;
 
-namespace Punto {
 
 class Operaciones {
 private:
@@ -33,6 +33,6 @@ public:
 	virtual ~Operaciones();
 };
 
-} /* namespace Punto */
+
 
 #endif /* OPERACIONES_H_ */

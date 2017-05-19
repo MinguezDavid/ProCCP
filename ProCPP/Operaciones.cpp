@@ -10,7 +10,6 @@
 #include <string.h>
 #include <stdio.h>
 
-namespace std {
 
 Operaciones::Operaciones() {
 
@@ -33,7 +32,7 @@ void opcionesEmp() {
 	eleccion = fopen("ElecUsuario.txt", "r+");
 
 	cout << "OPCIONES DE CONSTRUCCION\n" << endl;
-	mostrarEmpresas();
+	//mostrarEmpresas();
 	cout << endl;
 
 cout << "Introduzca el numero de la empresa que llevará a cabo la construcción: "<< endl;
@@ -132,7 +131,7 @@ void mostrarEleccion() {
 
 	eleccion = fopen("ElecUsuario.txt", "r");
 
-	if (eleccion == null) {
+	if (eleccion == NULL) {
 		cout << "\nError de apertura del archivo. \n" << endl;
 	} else {
 		cout << "\nINFORME \n" << endl;
@@ -152,5 +151,5 @@ Operaciones::~Operaciones() {
 		delete(colorC);
 }
 
-} /* namespace Punto */
+
 

@@ -482,4 +482,42 @@ int DB::recuperarPedidos(char * nombre){
 			return SQLITE_OK;
 }
 
-} /* namespace std */
+//TODO
+/*int DB::borrarPedido(int idPedido){
+	char sql[] = "delete from Pedido where IdPedido=?";
+
+			int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+			if (result != SQLITE_OK) {
+				printf("Error preparing statement (DELETE)\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			result = sqlite3_bind_text(stmt, 1, nombre, strlen(nombre), SQLITE_STATIC);
+			if (result != SQLITE_OK) {
+				printf("Error binding parameters\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+				}
+
+			result = sqlite3_step(stmt);
+			if (result != SQLITE_DONE) {
+				printf("Error inserting new data into country table\n");
+				return result;
+				}
+
+			printf("SQL query prepared (DELETE)\n");
+
+			result = sqlite3_finalize(stmt);
+			if (result != SQLITE_OK) {
+				printf("Error finalizing statement (DELETE)\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			printf("Prepared statement finalized (DELETE)\n");
+
+			return SQLITE_OK;
+}*/
+
+}
