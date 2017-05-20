@@ -36,6 +36,7 @@ public:
 	int guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalon, char * lugarConstruccion, int numHabitaciones, int numBanos, int idPedido, char* nombre);
 	int borrarUsuario(char * nombreUsuario);
 	int guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * ciudad_residencia, char * ciudad_Construccion);
+	char * recuperarUsuario(int id);
 };
 
 } /* namespace std */

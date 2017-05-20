@@ -48,7 +48,7 @@ int DB::close(){
 }
 
 int DB::recuperarUsuarios(){
-	char sql[] = "select Nombre from Usuario";
+	char sql[] = "select Nombre, id from Usuario";
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -59,6 +59,7 @@ int DB::recuperarUsuarios(){
 	cout << "SQL query prepared (SELECT)" << endl;
 
 	char name[100];
+	int id;
 
 		cout << endl;
 		cout << endl;
@@ -67,7 +68,8 @@ int DB::recuperarUsuarios(){
 			result = sqlite3_step(stmt);
 			if (result == SQLITE_ROW) {
 				strcpy(name, (char *) sqlite3_column_text(stmt, 0));
-				cout << name << endl;
+				id = sqlite3_column_int(stmt,1);
+				cout << "Nombre: " << name << " Id: " << id << endl;
 			}
 		} while (result == SQLITE_ROW);
 
@@ -85,6 +87,46 @@ int DB::recuperarUsuarios(){
 
 
 		return SQLITE_OK;
+}
+
+char * DB::recuperarUsuario(int id){
+	char sql[] = "select Nombre from Usuario where id=?";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout << "Error preparing statement (SELECT)" << endl;
+	}
+
+	result = sqlite3_bind_int(stmt, 1, id);
+	if (result != SQLITE_OK) {
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+	}
+	cout << "SQL query prepared (SELECT)" << endl;
+
+	char * name;
+
+	cout << endl;
+	cout << endl;
+
+	result = sqlite3_step(stmt);
+
+	name = strcpy(name, (char *) sqlite3_column_text(stmt, 0));
+	cout << name << endl;
+
+
+	cout << endl;
+	cout << endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout <<"Error finalizing statement (SELECT)" << endl;
+		cout << sqlite3_errmsg(db) <<endl;
+	}else{
+		cout << "Prepared statement finalized (SELECT)" << endl;
+	}
+
+	return name;
 }
 
 int DB::recuperarAdministradores(){

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <sstream>
 #include "DB.h"
@@ -32,6 +33,7 @@ void Operaciones::opcionesEmp() {
 		char * colorS;
 		char * colorH;
 		char * colorC;
+		char * nombre;
 		int elec;
 	FILE* eleccion;
 	eleccion = fopen("ElecUsuario.txt", "r+");
@@ -175,6 +177,184 @@ void Operaciones::mostrarEmpresas() {
 Operaciones::~Operaciones() {
 	delete(db);
 }
+
+void Operaciones::menuPrincipal()
+{
+	int opPrincipal;
+
+		cout << "Bienvenido/a al Sistema de Gestión de Viviendas:" << endl;
+		cout << "================================================" << endl;
+
+		do
+		{
+		cout << "1.- Empresa" << endl;
+		cout << "2.- Usuario" << endl;
+		cout << "3.- Administrador" << endl;
+		cout << "4.- Salir" << endl;
+		cout << endl;
+		cout << "Introduzca una opción:" << endl;
+		cin >> opPrincipal;
+
+		switch(opPrincipal)
+		{
+		case 1:
+			menuEmpresa();
+			break;
+		case 2:
+			menuUsuario(this->db->recuperarUsuario(seleccionarUsuario()));
+			break;
+		case 3:
+			menuAdministrador();
+			break;
+		case 4:
+			cout << "Muchas gracias. Hasta la próxima.";
+			exit(0);
+			break;
+		default: cout << "Opción incorrecta. Introduzca una opción válida." << endl;
+		break;
+		}
+
+	}while(opPrincipal < 1 || opPrincipal > 4);
+}
+
+int Operaciones::seleccionarUsuario(){
+	int sele;
+	this->db->recuperarUsuarios();
+	cout << endl;
+	cout << "Introduzca el Id deseado: " << endl;
+	cin >> sele;
+	return sele;
+}
+void Operaciones::menuEmpresa()
+{
+	int opEmpresa;
+
+	do
+	{
+		cout << "¿Qué desea hacer?" << endl;
+		cout << "1.- Consultar Empresas" << endl;
+		cout << "2.- Atrás" << endl;
+
+		cin >> opEmpresa;
+
+
+		switch(opEmpresa){
+
+		case 1:
+			mostrarEmpresas();
+			menuEmpresa();
+			break;
+		case 2:
+			menuPrincipal();
+			break;
+		default:
+			cout << "Opción incorrecta." << endl;
+		}
+
+	}while(opEmpresa > 2 || opEmpresa < 1);
+}
+
+void Operaciones::crearUsuario(){
+		char* nombre;
+		int fecha_nacimiento;
+		int telefono;
+		char* ciudad_residencia;
+		char* ciudad_construccion_casa;
+		cout << "Registro nuevo usuario\n\n";
+		cout << "Introduzca el nombre de usuario deseado: " << endl;
+		cin >> nombre;
+		cout << "Introduzca el año de nacimiento del usuario: " << endl;
+		cin >> fecha_nacimiento;
+		cout << "Introduzca el telefono del usuario: " << endl;
+		cin >> telefono;
+		cout << "Introduzca la ciudad de residencia del usuario: " << endl;
+		cin >> ciudad_residencia;
+		cout << "Introduzca la ciudad donde se construira la casa: " << endl;
+		cin >> ciudad_construccion_casa;
+		this->db->guardarUsuario(nombre,fecha_nacimiento,telefono,ciudad_residencia,ciudad_construccion_casa);
+}
+void Operaciones::menuUsuario(char * nombre)
+{
+	int opUsuario;
+	cout << nombre << endl;
+	do
+	{
+		cout << "¿Qué desea hacer?" << endl;
+		cout << "1.- Registrarse" << endl;
+		cout << "2.- Mostrar empresas" << endl;
+		cout << "3.- Realizar pedido" << endl;
+		cout << "4.- Consultar pedidos " << endl;
+		cout << "5.- Atrás" << endl;
+		cin >> opUsuario;
+
+		switch(opUsuario){
+		case 1:
+			//TODO
+			crearUsuario();
+			menuUsuario(nombre);
+			break;
+		case 2:
+			mostrarEmpresas();
+			menuUsuario(nombre);
+			break;
+		case 3:
+			opcionesEmp();
+			menuUsuario(nombre);
+			break;
+		case 4:
+			this->db->recuperarPedidos(nombre);
+			break;
+		case 5:
+			menuPrincipal();
+			break;
+
+		default:
+			cout << "Opción incorrecta. Introduzca una opción correcta." << endl;
+			break;
+		}
+	}while(opUsuario > 4 || opUsuario < 1);
+
+
+
+}
+
+void Operaciones::menuAdministrador()
+{
+	int opAdmin, codEmpElim, codPedElim;
+	do{
+	cout << "¿Qué desea hacer?" << endl;
+	cout << "1.- Eliminar empresa" << endl;
+	cout << "2.- Eliminar usuario" << endl;
+	cout << "3.- Consultar pedidos" << endl;
+	cout << "4.- Eliminar pedido" << endl;
+	cout << "5.- Atrás" << endl;
+	cin >> opAdmin;
+
+	switch(opAdmin)
+	{
+	case 1:
+		printf("EliminarEmpresa");
+		break;
+	case 2:
+		printf("EliminarUsuario");
+		break;
+	case 3:
+		printf("ConsultarPedidos");
+		break;
+	case 4:
+		printf("EliminarPedidos");
+		break;
+	case 5:
+		menuPrincipal();
+		break;
+
+	default:
+		cout << "Opción incorrecta. Introduzca una opción correcta." << endl;
+		break;
+		}
+	}while(opAdmin > 5 || opAdmin < 1);
+}
+
 
 
 

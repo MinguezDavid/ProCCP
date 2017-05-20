@@ -10,7 +10,8 @@ int main(){
 	Operaciones * op = new Operaciones(bd);
 
 	bd->open();
-	op->opcionesEmp();
+	op->menuPrincipal();
+	//op->opcionesEmp();
 
 	/**bd->recuperarUsuarios();
 	bd->guardarUsuario("Pedro", 1978,854124578,"Madrid", "Pamplona");

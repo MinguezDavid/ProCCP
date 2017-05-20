@@ -16,6 +16,7 @@ namespace std{
 class Operaciones {
 private:
 	DB * db;
+	char * nombre;
 
 
 
@@ -25,6 +26,12 @@ public:
 	void opcionesEmp();
 	void mostrarEleccion();
 	virtual ~Operaciones();
+	void menuPrincipal();
+	void menuEmpresa();
+	void menuAdministrador();
+	void menuUsuario(char * nombre);
+	void crearUsuario();
+	int seleccionarUsuario();
 };
 
 
