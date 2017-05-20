@@ -1,0 +1,18 @@
+Empresa 1
+-Cocina: Madera, ladrillo, color blanco
+-Baño: bañera,  color blanco,
+-Salón: madera, ladrillo, color blanco
+-Habitación: madera, ladrillo, color blanco
+ 
+Empresa 2
+-Cocina:ladrillo, marmol, color blanco 
+-Baño: bañera/ducha, color blanco o azul
+-Salón:ladrillo, madera, color blanco o azul
+-Habitación: ladrillo, madera, cama, color balnco o azul
+
+
+Empresa 3
+-Cocina: ladrillo, marmol, color blanco o azulejos, electrodomésticos
+-Baño: bañera/ducha, vide, color blanco, azul o azulejos
+-Salón: ladrillo, madera, color a elegir, muebles
+-Habitación: ladrillo, madera, muebles, color a elegir

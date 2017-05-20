@@ -9,123 +9,134 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <string>
+#include <sstream>
+#include "DB.h"
 
+using namespace std;
 
-Operaciones::Operaciones() {
-
+Operaciones::Operaciones(DB * db) {
+		this->db = db;
 
 }
 
 
-void opcionesEmp() {
-	char* lugar;
-	int habitaciones;
-	int wc;
-	int emp;
-	char* colorB;
-	char* colorS;
-	char* colorH;
-	char* colorC;
+void Operaciones::opcionesEmp() {
 	//remove("ElecUsuario.txt")==0;
 
+		char * lugar;
+		int habitaciones;
+		int wc;
+		int emp;
+		char * colorB;
+		char * colorS;
+		char * colorH;
+		char * colorC;
+		int elec;
 	FILE* eleccion;
 	eleccion = fopen("ElecUsuario.txt", "r+");
 
 	cout << "OPCIONES DE CONSTRUCCION\n" << endl;
-	//mostrarEmpresas();
+	mostrarEmpresas();
 	cout << endl;
 
-cout << "Introduzca el numero de la empresa que llevará a cabo la construcción: "<< endl;
+	cout << "Introduzca el numero de la empresa que llevará a cabo la construcción: "<< endl;
 
-	//cin << emp;
+	cin >> emp;
 
 	if (emp == 2) {
-		cout << "seleccione el color que se usará en los baños (blanco o azul): \n" << endl;
-		//fflush(stdout);
-		cin >> colorB;
-		if(colorB != "blanco" || colorB != "azul" || colorB != "BLANCO" || colorB != "AZUL"){
-			cout << "introduzca un color válido: " << endl;
-					//fflush(stdout);
-					cin >> colorB;
-		}
-		//fprintf(eleccion, "\nColor baños %s ", colorB);
-		cout << "seleccione el color que se usará en las habitaciones (blanco o azul): " << endl;
-		//fflush(stdout);
-		cin >> colorH;
-		if(colorH != "blanco" || colorH != "azul" || colorH != "BLANCO" || colorH != "AZUL"){
-					cout << "introduzca un color válido: " << endl;
-							//fflush(stdout);
-							cin >> colorH;
-				}
-		//fprintf(eleccion, "\nColor habitaciones %s ", colorH);
-		cout << "seleccione el color que se usará en el salón (Blanco o azul): " << endl;
-		//fflush(stdout);
-		cin >> colorS;
+		cout << "seleccione el color que se usará en los baños (1)blanco o 2)azul): " << endl;
 
-		if(colorS != "blanco" || colorS != "azul" || colorS != "BLANCO" || colorS != "AZUL"){
-					cout <<"introduzca un color válido: " << endl;
-							//fflush(stdout);
-							cin >> colorS;
-				}
-		//fprintf(eleccion, "\nColor salón %s", colorS);
+		cin >> elec;
+		if(elec == 1)
+			colorB = (char *)"blanco";
+		else
+			colorB = (char *)"azul";
+
+		cout << "seleccione el color que se usará en las habitaciones (1)blanco o 2)azul): " << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorH = (char *)"blanco";
+		else
+			colorH = (char *)"azul";
+
+		cout << "seleccione el color que se usará en el salón (1)Blanco o 2)azul): " << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorS = (char *)"blanco";
+		else
+			colorS = (char *)"azul";
+
 
 	} else if (emp == 3) {
-		cout <<	"seleccione el color/material que se usará en los baños (Blanco, azulejos o azul)" << endl;
-		//fflush(stdout);
-		cin >> colorB;
-		if(colorB != "blanco" || colorB != "azul" || colorB != "BLANCO" || colorB != "AZUL" || colorB != "azulejos" || colorB != "AZULEJOS"){
-					cout << "introduzca un color válido: " << endl;
-							//fflush(stdout);
-							cin >> colorB;
-				}
-		cout <<	"seleccione el color/material que se usará en la cocina(Blanco o azulejos)" << endl;
-		//fflush(stdout);
-		cin >> colorC;
-		if(colorC != "blanco" || colorC != "azulejos" || colorC != "BLANCO" || colorC != "AZULEJOS"){
-							cout <<"introduzca un color válido: " << endl;
-									//fflush(stdout);
-									cin >> colorC;
-						}
+		cout <<	"seleccione el color/material que se usará en los baños (1)Blanco, 2)azulejos o 3)azul)" << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorB = (char *)"blanco";
+		else if(elec == 2)
+			colorB = (char *)"azulejos";
+		else
+			colorB = (char *)"azul";
 
-		//fprintf(eleccion, "\nColor/material cocina %s ", colorC);
-		cout <<	"seleccione el color que se usará en las habitaciones (cualquiera)" << endl;
-		//fflush(stdout);
-		cin >> colorH;
-		//fprintf(eleccion, "\nColor habitaciones %s ", colorH);
-		cout <<"seleccione el color que se usará en el salón (cualquiera)" << endl;
-		//fflush(stdout);
-		cin >> colorS;
-		//fprintf(eleccion, "\nColor salón %s", colorS);
+		cout <<	"seleccione el color/material que se usará en la cocina(1)Blanco o 2)azulejos)" << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorC = (char *)"blanco";
+		else
+			colorC = (char *)"azulejos";
+
+
+		cout <<	"seleccione el color que se usará en las habitaciones (1)Blanco, 2)azulejos, 3)azul o 4)rojo)" << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorH = (char *)"blanco";
+		else if(elec == 2)
+			colorH = (char *)"azulejos";
+		else if(elec == 3)
+			colorH = (char *)"azul";
+		else
+			colorH = (char *)"rojo";
+
+		cout <<"seleccione el color que se usará en el salón (1)Blanco, 2)azulejos, 3)azul o 4)rojo)" << endl;
+		cin >> elec;
+		if(elec == 1)
+			colorS = (char *)"blanco";
+		else if(elec == 2)
+			colorS = (char *)"azulejos";
+		else if(elec == 3)
+			colorS = (char *)"azul";
+		else
+			colorS = (char *)"rojo";
+
 	}
 
-	cout << "\nLugar donde se construirá la casa (playa, montaña o ciudad): " << endl;
-	//fflush(stdout);
-	cin >> lugar;
-	if(lugar != "playa" || lugar != "PLAYA" || lugar != "montaña" || lugar != "MONTAÑA" || lugar != "playa" || lugar != "PLAYA"){
-						cout << "introduzca un lugar válido: " << endl;
-							//	fflush(stdout);
-								cin >> lugar;
-					}
-	//fprintf(eleccion, "\nLugar de construccion: %s", lugar);
+	cout << "\nLugar donde se construirá la casa (1)playa, 2)montaña o 3)ciudad): " << endl;
+	cin >> elec;
+	if(elec == 1)
+		lugar = (char *)"playa";
+	else if(elec == 2)
+		lugar = (char *)"montana";
+	else
+		lugar = (char *)"ciudad";
+
 	cout << "Introduzca el número de habitaciones: " << endl;
-	//fflush(stdout);
 	cin >> habitaciones;
-	//fprintf(eleccion, "\nHabitaciones: %i", habitaciones);
+
 	cout << "Introduzca el número de baños: " << endl;
-	//fflush(stdout);
 	cin >> wc;
-	//fprintf(eleccion, "\nBaños: %i \n", wc);
-//	printf("Esta es la elección final");
+
 
 
 
 	fclose(eleccion);
+	this->db->guardarPedido((char *)"verde",(char *)"verde", (char *)"verde",(char *) "playa", 5, 3, 17,(char *)"Borja");
+	this->db->guardarPedido(colorB,colorH, colorS, lugar, habitaciones, wc, 14,(char *)"Borja");
 
 	//menuUsuario(); esto se queda así hasta nuevo aviso
 }
 
 //Va con algo de retraso
-void mostrarEleccion() {
+void Operaciones::mostrarEleccion() {
 	FILE *eleccion;
 	int caracter;
 
@@ -143,13 +154,28 @@ void mostrarEleccion() {
 
 }
 
-Operaciones::~Operaciones() {
-		delete(lugar);
-		delete(colorB);
-		delete(colorS);
-		delete(colorH);
-		delete(colorC);
+void Operaciones::mostrarEmpresas() {
+	FILE *archivo;
+	int caracter;
+
+	archivo = fopen("empresas.txt", "r");
+
+	if (archivo == NULL) {
+		cout <<"\nError de apertura del archivo. \n\n";
+	} else {
+		cout << "\nEMPRESAS DISPONIBLES \n\n";
+		while ((caracter = fgetc(archivo)) != EOF) {
+			printf("%c", caracter);
+		}
+		printf("\n\n");
+	}
+	fclose(archivo);
 }
+
+Operaciones::~Operaciones() {
+	delete(db);
+}
+
 
 
 

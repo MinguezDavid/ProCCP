@@ -1,0 +1,8 @@
+Empresa 2
+Color baños blanco 
+Color habitaciones blanco 
+Color salón azul
+Lugar de construccion: playa
+Habitaciones 7
+Baños: 5 
+

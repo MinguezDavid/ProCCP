@@ -8,31 +8,26 @@
 #ifndef OPERACIONES_H_
 #define OPERACIONES_H_
 #include <iostream>
-using namespace std;
-
+#include <string.h>
+#include "sqlite3.h"
+#include "DB.h"
+namespace std{
 
 class Operaciones {
 private:
-	char *lugar;
-	int habitaciones;
-	int wc;
-	int emp;
-	char *colorB;
-	char *colorS;
-	char *colorH;
-	char *colorC;
+	DB * db;
 
 
 
 public:
-	Operaciones();
+	Operaciones(DB * db);
 	void mostrarEmpresas();
 	void opcionesEmp();
 	void mostrarEleccion();
-
 	virtual ~Operaciones();
 };
 
 
+}
 
 #endif /* OPERACIONES_H_ */
