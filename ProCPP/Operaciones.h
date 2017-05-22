@@ -16,7 +16,6 @@ namespace std{
 class Operaciones {
 private:
 	DB * db;
-	char * nombre;
 	int idCont;
 
 
@@ -34,6 +33,7 @@ public:
 	void crearUsuario();
 	int seleccionarUsuario();
 	char * conversion(string s);
+	void asignar();
 };
 
 

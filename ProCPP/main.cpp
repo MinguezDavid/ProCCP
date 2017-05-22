@@ -6,10 +6,11 @@
 using namespace std;
 
 int main(){
-	DB * bd = new DB(1, "baseDatos.sqlite");
+	DB * bd = new DB(1, (char *)"baseDatos.sqlite");
 	Operaciones * op = new Operaciones(bd);
 
 	bd->open();
+	op->asignar();
 	op->menuPrincipal();
 	//op->opcionesEmp();
 

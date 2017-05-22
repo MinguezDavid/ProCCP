@@ -12,14 +12,12 @@
 
 namespace std {
 
-int contadorId = 0;
 
 DB::DB(int idDb, char * nombre) {
 	this->nombre = new char[strlen(nombre) + 1];
 	strcpy(this->nombre, nombre);
 	this->idDb = idDb;
 	this->db = db;
-	contadorId++;
 }
 
 DB::~DB() {
