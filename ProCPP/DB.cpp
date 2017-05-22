@@ -523,7 +523,7 @@ int DB::recuperarPedidos(char * nombre){
 			return result;
 
 
-			return SQLITE_OK;
-}
+		//	return SQLITE_OK;
 
-} /* namespace std */
+}
+}/* namespace std */

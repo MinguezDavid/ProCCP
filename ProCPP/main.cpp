@@ -24,8 +24,6 @@ int main(){
 	//bd->guardarPedido("Rosa", "pink", "violeta", "montaña", 3, 2, 3,"Federico");
 	bd->close();
 
-	delete bd;
-	delete op;
 	return 0;
 }
 

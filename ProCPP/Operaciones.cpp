@@ -302,7 +302,8 @@ void Operaciones::menuUsuario()
 			menuUsuario();
 			break;
 		case 4:
-			//this->db->recuperarPedidos();
+			this->db->recuperarPedidos((char *)"Borja");
+			menuUsuario();
 			break;
 		case 5:
 			menuPrincipal();
