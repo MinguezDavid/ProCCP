@@ -18,7 +18,7 @@ using namespace std;
 
 Operaciones::Operaciones(DB * db) {
 		this->db = db;
-		this->idCont = 30;
+		this->idCont = this->db->recuperarId();
 
 }
 
@@ -137,6 +137,7 @@ void Operaciones::opcionesEmp() {
 	//this->db->guardarPedido((char *)"verde",(char *)"verde", (char *)"verde",(char *) "playa", 5, 3, 17,(char *)"Borja");
 	this->db->guardarPedido(colorB,colorH, colorS, lugar, habitaciones, wc, this->idCont,conversion(nombre));
 	this->idCont++;
+	this->db->subirId(this->idCont);
 
 	//menuUsuario(); esto se queda así hasta nuevo aviso
 }

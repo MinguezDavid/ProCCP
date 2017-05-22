@@ -37,6 +37,8 @@ public:
 	int borrarUsuario(char * nombreUsuario);
 	int guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * ciudad_residencia, char * ciudad_Construccion);
 	char * recuperarUsuario(int id);
+	int recuperarId();
+	int subirId(int id);
 };
 
 } /* namespace std */

@@ -526,4 +526,67 @@ int DB::recuperarPedidos(char * nombre){
 		//	return SQLITE_OK;
 
 }
+int DB::recuperarId(){
+	char sql[] = "select id from idCounter WHERE nombre='a'";
+
+			int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+			if (result != SQLITE_OK) {
+					cout << "Error preparing statement (SELECT)" << endl;
+					return result;
+				}
+			cout << "SQL query prepared (SELECT)" << endl;
+
+			int id;
+
+
+					result = sqlite3_step(stmt) ;
+
+						id = sqlite3_column_int(stmt, 0);
+
+				result = sqlite3_finalize(stmt);
+				if (result != SQLITE_OK) {
+					cout <<"Error finalizing statement (SELECT)" << endl;
+					cout << sqlite3_errmsg(db) <<endl;
+				}else{
+					cout << "Prepared statement finalized (SELECT)" << endl;
+				}
+				return id;
+
+
+}
+int DB::subirId(int id){
+	char sql[] = "UPDATE idCounter SET id=? WHERE nombre='a'";
+		int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL) ;
+		if (result != SQLITE_OK) {
+			printf("Error preparing statement (INSERT)\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+		}
+
+		printf("SQL query prepared (INSERT)\n");
+
+		result = sqlite3_bind_int(stmt, 1, id);
+		if (result != SQLITE_OK) {
+			printf("Error binding parameters\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+		}
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error inserting new data into country table\n");
+			return result;
+		}
+
+		result = sqlite3_finalize(stmt);
+		if (result != SQLITE_OK) {
+			printf("Error finalizing statement (INSERT)\n");
+			printf("%s\n", sqlite3_errmsg(db));
+			return result;
+		}
+
+		printf("Prepared statement finalized (INSERT)\n");
+
+		return SQLITE_OK;
+}
 }/* namespace std */
