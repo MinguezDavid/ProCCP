@@ -54,7 +54,7 @@ int DB::recuperarUsuarios(){
 			return result;
 		}
 
-	cout << "SQL query prepared (SELECT)" << endl;
+	//cout << "SQL query prepared (SELECT)" << endl;
 
 	char name[100];
 	int id;
@@ -67,7 +67,7 @@ int DB::recuperarUsuarios(){
 			if (result == SQLITE_ROW) {
 				strcpy(name, (char *) sqlite3_column_text(stmt, 0));
 				id = sqlite3_column_int(stmt,1);
-				cout << "Nombre: " << name << " Id: " << id << endl;
+				cout << "Nombre: " << name << endl;
 			}
 		} while (result == SQLITE_ROW);
 
@@ -79,7 +79,7 @@ int DB::recuperarUsuarios(){
 			cout <<"Error finalizing statement (SELECT)" << endl;
 			cout << sqlite3_errmsg(db) <<endl;
 		}else{
-			cout << "Prepared statement finalized (SELECT)" << endl;
+			//cout << "Prepared statement finalized (SELECT)" << endl;
 		}
 		return result;
 
@@ -100,7 +100,7 @@ char * DB::recuperarUsuario(int id){
 		printf("Error binding parameters\n");
 		printf("%s\n", sqlite3_errmsg(db));
 	}
-	cout << "SQL query prepared (SELECT)" << endl;
+	//cout << "SQL query prepared (SELECT)" << endl;
 
 	char * name;
 
@@ -121,7 +121,7 @@ char * DB::recuperarUsuario(int id){
 		cout <<"Error finalizing statement (SELECT)" << endl;
 		cout << sqlite3_errmsg(db) <<endl;
 	}else{
-		cout << "Prepared statement finalized (SELECT)" << endl;
+		//cout << "Prepared statement finalized (SELECT)" << endl;
 	}
 
 	return name;
@@ -136,7 +136,7 @@ int DB::recuperarAdministradores(){
 				return result;
 			}
 
-		cout << "SQL query prepared (SELECT)" << endl;
+		//cout << "SQL query prepared (SELECT)" << endl;
 
 		char name[100];
 
@@ -159,7 +159,7 @@ int DB::recuperarAdministradores(){
 				cout <<"Error finalizing statement (SELECT)" << endl;
 				cout << sqlite3_errmsg(db) <<endl;
 			}else{
-				cout << "Prepared statement finalized (SELECT)" << endl;
+				//cout << "Prepared statement finalized (SELECT)" << endl;
 			}
 			return result;
 
@@ -176,7 +176,7 @@ int DB::guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * 
 		return result;
 	}
 
-	printf("SQL query prepared (INSERT)\n");
+	//printf("SQL query prepared (INSERT)\n");
 
 	result = sqlite3_bind_text(stmt, 1, nombre, strlen(nombre), SQLITE_STATIC);
 	if (result != SQLITE_OK) {
@@ -226,7 +226,7 @@ int DB::guardarUsuario(char * nombre, int fechaNacimiento, int telefono, char * 
 		return result;
 	}
 
-	printf("Prepared statement finalized (INSERT)\n");
+	printf("Usuario guardado correctamente\n");
 
 	return SQLITE_OK;
 }
@@ -254,7 +254,7 @@ int DB::borrarUsuario(char * nombre){
 			return result;
 			}
 
-		printf("SQL query prepared (DELETE)\n");
+		//printf("SQL query prepared (DELETE)\n");
 
 		result = sqlite3_finalize(stmt);
 		if (result != SQLITE_OK) {
@@ -263,7 +263,7 @@ int DB::borrarUsuario(char * nombre){
 			return result;
 		}
 
-		printf("Prepared statement finalized (DELETE)\n");
+		printf("Usuario borrado correctamente\n");
 
 		return SQLITE_OK;
 }
@@ -277,7 +277,7 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 		return result;
 	}
 
-	printf("SQL query prepared (INSERT)\n");
+	//printf("SQL query prepared (INSERT)\n");
 
 	result = sqlite3_bind_text(stmt, 1, colorBano, strlen(colorBano), SQLITE_STATIC);
 	if (result != SQLITE_OK) {
@@ -340,7 +340,7 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 		printf("Error inserting new data into country table\n");
 		return result;
 	}
-	cout <<"STEP"<<endl;
+	//cout <<"STEP"<<endl;
 
 	result = sqlite3_finalize(stmt);
 	if (result != SQLITE_OK) {
@@ -348,9 +348,9 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
 	}
-	cout <<"FINALIZED"<<endl;
+	//cout <<"FINALIZED"<<endl;
 
-	printf("Prepared statement finalized (INSERT)\n");
+	printf("Pedido guardado correctamente\n");
 
 	return SQLITE_OK;
 }
@@ -373,7 +373,7 @@ int DB::recuperarPrecio(char * nombre){
 
 
 
-		cout << "SQL query prepared (SELECT)" << endl;
+		//cout << "SQL query prepared (SELECT)" << endl;
 
 		int precio;
 
@@ -395,7 +395,7 @@ int DB::recuperarPrecio(char * nombre){
 				cout <<"Error finalizing statement (SELECT)" << endl;
 				cout << sqlite3_errmsg(db) <<endl;
 			}else{
-				cout << "Prepared statement finalized (SELECT)" << endl;
+				//cout << "Prepared statement finalized (SELECT)" << endl;
 			}
 			return result;
 
@@ -421,7 +421,7 @@ int DB::recuperarPedido(int idPedido){
 
 
 
-			cout << "SQL query prepared (SELECT)" << endl;
+			//cout << "SQL query prepared (SELECT)" << endl;
 
 			int id;
 			int numHabitaciones;
@@ -464,7 +464,7 @@ int DB::recuperarPedido(int idPedido){
 					cout <<"Error finalizing statement (SELECT)" << endl;
 					cout << sqlite3_errmsg(db) <<endl;
 				}else{
-					cout << "Prepared statement finalized (SELECT)" << endl;
+					//cout << "Prepared statement finalized (SELECT)" << endl;
 				}
 				return result;
 
@@ -490,7 +490,7 @@ int DB::recuperarPedidos(char * nombre){
 
 
 
-			cout << "SQL query prepared (SELECT)" << endl;
+			//cout << "SQL query prepared (SELECT)" << endl;
 
 			int id;
 			char nombreUsuario[100];
@@ -516,7 +516,7 @@ int DB::recuperarPedidos(char * nombre){
 				cout <<"Error finalizing statement (SELECT)" << endl;
 				cout << sqlite3_errmsg(db) <<endl;
 			}else{
-				cout << "Prepared statement finalized (SELECT)" << endl;
+				//cout << "Prepared statement finalized (SELECT)" << endl;
 			}
 			return result;
 
@@ -532,7 +532,7 @@ int DB::recuperarId(){
 					cout << "Error preparing statement (SELECT)" << endl;
 					return result;
 				}
-			cout << "SQL query prepared (SELECT)" << endl;
+			//cout << "SQL query prepared (SELECT)" << endl;
 
 			int id;
 
@@ -546,7 +546,7 @@ int DB::recuperarId(){
 					cout <<"Error finalizing statement (SELECT)" << endl;
 					cout << sqlite3_errmsg(db) <<endl;
 				}else{
-					cout << "Prepared statement finalized (SELECT)" << endl;
+					//cout << "Prepared statement finalized (SELECT)" << endl;
 				}
 				return id;
 
@@ -561,7 +561,7 @@ int DB::subirId(int id){
 			return result;
 		}
 
-		printf("SQL query prepared (INSERT)\n");
+		//printf("SQL query prepared (INSERT)\n");
 
 		result = sqlite3_bind_int(stmt, 1, id);
 		if (result != SQLITE_OK) {
@@ -583,8 +583,45 @@ int DB::subirId(int id){
 			return result;
 		}
 
-		printf("Prepared statement finalized (INSERT)\n");
+		//printf("Prepared statement finalized (INSERT)\n");
 
 		return SQLITE_OK;
+}
+
+int DB::eliminarPedido(int idPedido){
+	char sql[] = "delete from Pedido where IdPedido=?";
+
+			int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+			if (result != SQLITE_OK) {
+				printf("Error preparing statement (DELETE)\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			result = sqlite3_bind_int(stmt, 1, idPedido);
+			if (result != SQLITE_OK) {
+				printf("Error binding parameters\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+				}
+
+			result = sqlite3_step(stmt);
+			if (result != SQLITE_DONE) {
+				printf("Error inserting new data into country table\n");
+				return result;
+				}
+
+			//printf("SQL query prepared (DELETE)\n");
+
+			result = sqlite3_finalize(stmt);
+			if (result != SQLITE_OK) {
+				printf("Error finalizing statement (DELETE)\n");
+				printf("%s\n", sqlite3_errmsg(db));
+				return result;
+			}
+
+			printf("Pedido borrado correctamente\n");
+
+			return SQLITE_OK;
 }
 }/* namespace std */

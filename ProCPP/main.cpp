@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-	DB * bd = new DB(1, (char *)"baseDatos.sqlite");
+	DB * bd = new DB(1, (char *)"C:\\Users\\Pablo\\Documents\\ProyectoP4\\BD\\baseDatos.sqlite");
 	Operaciones * op = new Operaciones(bd);
 
 	bd->open();

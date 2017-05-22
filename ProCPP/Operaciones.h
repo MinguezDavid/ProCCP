@@ -33,6 +33,7 @@ public:
 	void crearUsuario();
 	int seleccionarUsuario();
 	char * conversion(string s);
+	char * conversion2(string s);
 	void asignar();
 };
 

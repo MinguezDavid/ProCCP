@@ -39,6 +39,7 @@ public:
 	char * recuperarUsuario(int id);
 	int recuperarId();
 	int subirId(int id);
+	int eliminarPedido(int idPedido);
 };
 
 } /* namespace std */

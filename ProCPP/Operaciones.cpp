@@ -149,12 +149,18 @@ void Operaciones::opcionesEmp() {
 
 char * Operaciones::conversion(string s){
 	char * nombre1;
-	cout << s.length()<<endl;
+	//cout << s.length()<<endl;
 	for(int i = 0;i < s.length();i++){
 			nombre1[i] = s.at(i);
 		}
+	cout << "hola"<<endl;
 	nombre1[s.length()] = '\0';
 	return nombre1;
+}
+
+char * Operaciones::conversion2(string s){
+	char tab2[1024];
+	strcpy(tab2, s.c_str());
 }
 //Va con algo de retraso
 void Operaciones::mostrarEleccion() {
@@ -295,6 +301,7 @@ void Operaciones::crearUsuario(){
 void Operaciones::menuUsuario()
 {
 	int opUsuario;
+	string nombre;
 	//cout << nombre << endl;
 	do
 	{
@@ -303,7 +310,8 @@ void Operaciones::menuUsuario()
 		cout << "2.- Mostrar empresas" << endl;
 		cout << "3.- Realizar pedido" << endl;
 		cout << "4.- Consultar pedidos " << endl;
-		cout << "5.- Atrás" << endl;
+		cout << "5.- Mostrar Usuarios" <<endl;
+		cout << "6.- Atrás" << endl;
 		cin >> opUsuario;
 
 		switch(opUsuario){
@@ -321,10 +329,18 @@ void Operaciones::menuUsuario()
 			menuUsuario();
 			break;
 		case 4:
-			this->db->recuperarPedidos((char *)"Borja");
+			cout << "Introduzca el nombre de usuario: " << endl;
+			cin >> nombre;
+			char tab2[1024];
+			strcpy(tab2, nombre.c_str());
+			this->db->recuperarPedidos(tab2);
 			menuUsuario();
 			break;
 		case 5:
+			this->db->recuperarUsuarios();
+			menuUsuario();
+			break;
+		case 6:
 			menuPrincipal();
 			break;
 
@@ -340,31 +356,51 @@ void Operaciones::menuUsuario()
 
 void Operaciones::menuAdministrador()
 {
-	int opAdmin, codEmpElim, codPedElim;
+	int opAdmin, codEmpElim, codPedElim, id;
+	string nombre;
 	do{
 	cout << "¿Qué desea hacer?" << endl;
-	cout << "1.- Eliminar empresa" << endl;
-	cout << "2.- Eliminar usuario" << endl;
-	cout << "3.- Consultar pedidos" << endl;
-	cout << "4.- Eliminar pedido" << endl;
-	cout << "5.- Atrás" << endl;
+	cout << "1.- Eliminar usuario" << endl;
+	cout << "2.- Consultar pedidos" << endl;
+	cout << "3.- Eliminar pedido" << endl;
+	cout << "4.- Mostrar administradores" << endl;
+	cout << "5.- Mostrar usuarios" << endl;
+	cout << "6.- Atrás" << endl;
 	cin >> opAdmin;
 
 	switch(opAdmin)
 	{
 	case 1:
-		printf("EliminarEmpresa");
+		cout << "Introduzca el nombre de usuario que desea borrar: " << endl;
+		cin >> nombre;
+		char tab2[1024];
+		strcpy(tab2, nombre.c_str());
+		this->db->borrarUsuario(tab2);
+		menuAdministrador();
 		break;
 	case 2:
-		printf("EliminarUsuario");
+		cout << "Introduzca el nombre de usuario: " << endl;
+		cin >> nombre;
+		tab2[1024];
+		strcpy(tab2, nombre.c_str());
+		this->db->recuperarPedidos(tab2);
+		menuAdministrador();
 		break;
 	case 3:
-		printf("ConsultarPedidos");
+		cout <<"Introduza el id del pedido a eliminar: " << endl;
+		cin >> id;
+		this->db->eliminarPedido(id);
+		menuAdministrador();
 		break;
 	case 4:
-		printf("EliminarPedidos");
+		this->db->recuperarAdministradores();
+		menuAdministrador();
 		break;
 	case 5:
+		this->db->recuperarUsuarios();
+		menuAdministrador();
+		break;
+	case 6:
 		menuPrincipal();
 		break;
 
