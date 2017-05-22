@@ -342,6 +342,7 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 		printf("Error inserting new data into country table\n");
 		return result;
 	}
+	cout <<"STEP"<<endl;
 
 	result = sqlite3_finalize(stmt);
 	if (result != SQLITE_OK) {
@@ -349,6 +350,7 @@ int DB::guardarPedido(char * colorBano, char * colorHabitacion, char * colorSalo
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
 	}
+	cout <<"FINALIZED"<<endl;
 
 	printf("Prepared statement finalized (INSERT)\n");
 

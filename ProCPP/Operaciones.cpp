@@ -131,7 +131,7 @@ void Operaciones::opcionesEmp() {
 
 
 	fclose(eleccion);
-	this->db->guardarPedido((char *)"verde",(char *)"verde", (char *)"verde",(char *) "playa", 5, 3, 17,(char *)"Borja");
+	//this->db->guardarPedido((char *)"verde",(char *)"verde", (char *)"verde",(char *) "playa", 5, 3, 17,(char *)"Borja");
 	this->db->guardarPedido(colorB,colorH, colorS, lugar, habitaciones, wc, 14,(char *)"Borja");
 
 	//menuUsuario(); esto se queda así hasta nuevo aviso
@@ -201,7 +201,7 @@ void Operaciones::menuPrincipal()
 			menuEmpresa();
 			break;
 		case 2:
-			menuUsuario(this->db->recuperarUsuario(seleccionarUsuario()));
+			menuUsuario();
 			break;
 		case 3:
 			menuAdministrador();
@@ -273,10 +273,10 @@ void Operaciones::crearUsuario(){
 		cin >> ciudad_construccion_casa;
 		this->db->guardarUsuario(nombre,fecha_nacimiento,telefono,ciudad_residencia,ciudad_construccion_casa);
 }
-void Operaciones::menuUsuario(char * nombre)
+void Operaciones::menuUsuario()
 {
 	int opUsuario;
-	cout << nombre << endl;
+	//cout << nombre << endl;
 	do
 	{
 		cout << "¿Qué desea hacer?" << endl;
@@ -291,18 +291,18 @@ void Operaciones::menuUsuario(char * nombre)
 		case 1:
 			//TODO
 			crearUsuario();
-			menuUsuario(nombre);
+			menuUsuario();
 			break;
 		case 2:
 			mostrarEmpresas();
-			menuUsuario(nombre);
+			menuUsuario();
 			break;
 		case 3:
 			opcionesEmp();
-			menuUsuario(nombre);
+			menuUsuario();
 			break;
 		case 4:
-			this->db->recuperarPedidos(nombre);
+			//this->db->recuperarPedidos();
 			break;
 		case 5:
 			menuPrincipal();

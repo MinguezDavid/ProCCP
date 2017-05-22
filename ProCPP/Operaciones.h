@@ -29,7 +29,7 @@ public:
 	void menuPrincipal();
 	void menuEmpresa();
 	void menuAdministrador();
-	void menuUsuario(char * nombre);
+	void menuUsuario();
 	void crearUsuario();
 	int seleccionarUsuario();
 };
