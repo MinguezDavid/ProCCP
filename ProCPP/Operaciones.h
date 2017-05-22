@@ -17,6 +17,7 @@ class Operaciones {
 private:
 	DB * db;
 	char * nombre;
+	int idCont;
 
 
 
@@ -32,6 +33,7 @@ public:
 	void menuUsuario();
 	void crearUsuario();
 	int seleccionarUsuario();
+	char * conversion(string s);
 };
 
 

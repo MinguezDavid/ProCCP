@@ -18,6 +18,7 @@ using namespace std;
 
 Operaciones::Operaciones(DB * db) {
 		this->db = db;
+		this->idCont = 30;
 
 }
 
@@ -33,7 +34,7 @@ void Operaciones::opcionesEmp() {
 		char * colorS;
 		char * colorH;
 		char * colorC;
-		char * nombre;
+		string nombre;
 		int elec;
 	FILE* eleccion;
 	eleccion = fopen("ElecUsuario.txt", "r+");
@@ -127,16 +128,28 @@ void Operaciones::opcionesEmp() {
 	cout << "Introduzca el número de baños: " << endl;
 	cin >> wc;
 
+	cout << "Introduzca el nombre de usuario: " << endl;
+	cin >> nombre;
 
 
 
 	fclose(eleccion);
 	//this->db->guardarPedido((char *)"verde",(char *)"verde", (char *)"verde",(char *) "playa", 5, 3, 17,(char *)"Borja");
-	this->db->guardarPedido(colorB,colorH, colorS, lugar, habitaciones, wc, 14,(char *)"Borja");
+	this->db->guardarPedido(colorB,colorH, colorS, lugar, habitaciones, wc, this->idCont,conversion(nombre));
+	this->idCont++;
 
 	//menuUsuario(); esto se queda así hasta nuevo aviso
 }
 
+char * Operaciones::conversion(string s){
+	char * nombre1;
+	cout << s.length()<<endl;
+	for(int i = 0;i < s.length();i++){
+			nombre1[i] = s.at(i);
+		}
+	nombre1[s.length()] = '\0';
+	return nombre1;
+}
 //Va con algo de retraso
 void Operaciones::mostrarEleccion() {
 	FILE *eleccion;
